@@ -1,7 +1,7 @@
 package com.training.jdbc;
 import java.util.Comparator;
 
-import com.training.collections.Student;
+
 
 public class PriceComparator implements Comparator<Product> {
 
