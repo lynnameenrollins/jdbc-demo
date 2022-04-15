@@ -10,8 +10,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import com.training.collections.NameComparator;
-import com.training.collections.Student;
 
 public class JdbcTest {
 
