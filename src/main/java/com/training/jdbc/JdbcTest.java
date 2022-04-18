@@ -2,6 +2,7 @@ package com.training.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,9 +11,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-
 public class JdbcTest {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 			
 		//to load the driver
@@ -24,13 +25,22 @@ public class JdbcTest {
 		
 		Connection con = DriverManager.getConnection(url, user, password);
 		
-		String query = "select * from product";
-		Statement stmt = con.createStatement();		
+		//String query = "select * from product";
+		//Statement stmt = con.createStatement();		
+		//for dynamic query
+		String query = "select * from product where prod_desc = ? and price > ?";
+		PreparedStatement pstmt = con.prepareStatement(query);
 		
-		ResultSet rs = stmt.executeQuery(query);
+		pstmt.setString(1, "SAMSUNG");
+		pstmt.setInt(2, 500);
+		
+		//ResultSet rs = stmt.executeQuery(query);
+		ResultSet rs = pstmt.executeQuery();
 		List <Product> productSet = new ArrayList<Product>();
 		
-		
+		if(con !=null) {
+			System.out.println("Connection established successfully");
+	
 		while (rs.next()) {
 //			System.out.println("Prod_id: " + rs.getString("prod_id"));
 //			System.out.println("Prod_name: " + rs.getString("prod_name"));
@@ -48,8 +58,6 @@ public class JdbcTest {
 			System.out.println("Id: " + product.getProd_id()+ "   Name: " + product.getProd_name() +
 					"     Desc: " + product.getProd_desc() + "  Price: $" +  product.getPrice());
 		}
-		if(con !=null) {
-			System.out.println("Connection established successfully");
 		}
 		else {
 			System.out.println("Connection refused!!");
