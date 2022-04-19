@@ -46,15 +46,15 @@ public class MyConsumer {
 		}
 		else if(unit>200 && unit <= 500)
 		{
-			charge = unit * 1.25;
+			charge = 50 +  (unit-200) * 1.25;
 		}
 		else if(unit>500 && unit <= 1000)
 		{
-			charge = unit * 1.00;
+			charge = 50 + (unit-500) * 1.00 + 300*1.25;
 		}
 		else if(unit>1000)
 		{
-			charge = unit * 0.75;
+			charge = (unit-100) * 0.75 + 50 + (unit-500) * 1.00 + 300*1.25;
 		}
 		return charge;
 	}

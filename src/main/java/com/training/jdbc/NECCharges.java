@@ -66,7 +66,7 @@ public class NECCharges {
 				
 					cost = consumer.CalcMonthlyCharge(consumer.getUnits());
 					System.out.println("Id: " + consumer.getId()+ "   Name: " + consumer.getName()+
-							"     Units: " + consumer.getUnits() + "  Cost: " + cost );
+							"     Units: " + consumer.getUnits() + "  Cost: " + String.format("%.2f", cost));
 				}
 				
 			
